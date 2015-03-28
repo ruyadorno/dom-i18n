@@ -1,0 +1,23 @@
+{
+  "name": "dom-i18n",
+  "version": "1.0.0",
+  "description": "Provides a very basic multilingual support for the DOM in js",
+  "scripts": {
+    "test": "grunt jasmine:dev"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.x",
+    "grunt-contrib-jasmine": "^0.8.x",
+    "grunt-contrib-uglify": "^0.8.x",
+    "grunt-menu": "^1.x.x",
+    "grunt-sg-release": "^0.2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruyadorno/dom-i18n.git"
+  },
+  "author": {
+    "name": "Ruy Adorno",
+    "url": "http://ruyadorno.com"
+  }
+}
