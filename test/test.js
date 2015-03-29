@@ -64,7 +64,7 @@ describe('dom-i18n', function() {
 
     expect(
       getElementById('hello-world').textContent
-    ).toEqual('Bonjour monsieur/madame');
+    ).toEqual('Bonjour Montréal');
 
   });
 

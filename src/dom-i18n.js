@@ -2,14 +2,6 @@
 
   'use strict';
 
-  function getCurrentLanguage() {
-    var lang = window.navigator.languages ?
-      window.navigator.languages[0] :
-      (window.navigator.language || window.navigator.userLanguage);
-
-    return lang.indexOf('-') ? lang.split('-')[0] : lang;
-  }
-
   function domI18n(options) {
 
     options = options || {};
@@ -20,7 +12,34 @@
     var defaultLanguage = options.defaultLanguage || 'en';
     var languages = options.languages || ['en'];
     var translatableAttr = 'data-translatable-attr';
-    var currentLanguage = getCurrentLanguage();
+    var currentLanguage = (function getCurrentLanguage(lang) {
+
+      // If no current language was provided, uses default browser language
+      if (!lang) {
+        lang = window.navigator.languages ?
+          window.navigator.languages[0] :
+          (window.navigator.language || window.navigator.userLanguage);
+      }
+
+      // If language isn't on languages arr, try using a less specific ref
+      if (!languages.indexOf(lang)) {
+        console.warning(
+          lang + ' is not available on the list of languages provided'
+        );
+        lang = lang.indexOf('-') ? lang.split('-')[0] : lang;
+      }
+
+      // In the case that the lang ref is really not in the
+      // languages list, switchs to default language instead
+      if (!languages.indexOf(lang)) {
+        console.error(
+          lang + ' is not compatible with any language provided'
+        );
+        lang = defaultLanguage;
+      }
+
+      return lang;
+    })(options.currentLanguage);
 
     function hasCurrentLanguage() {
       return languages.indexOf(currentLanguage) > -1;
