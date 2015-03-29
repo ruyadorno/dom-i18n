@@ -2,6 +2,7 @@ describe('dom-i18n', function() {
 
   'use strict';
 
+  var createdIds = [];
   var forEach = Array.prototype.forEach;
   var createElement = window.document.createElement.bind(window.document);
   var getElementById = window.document.getElementById.bind(window.document);
@@ -15,6 +16,7 @@ describe('dom-i18n', function() {
       childElem.id = id;
       childElem.textContent = text;
       childElem.dataset.translatable = true;
+      createdIds.push(id);
       return childElem;
     }
 
@@ -22,10 +24,24 @@ describe('dom-i18n', function() {
       rootElem.appendChild(
         createTextNode(
           'hello-world',
-          'Hello world // Bonjour monsieur/madame // Mundão velho sem porteira'
+          'Hello world // Bonjour Montréal // Mundão velho sem porteira'
         )
       );
     })();
+
+  });
+
+  afterEach(function () {
+
+    createdIds.forEach(function (id, index) {
+
+      var elem = getElementById(id);
+      var parent = elem.parentNode;
+
+      parent.removeChild(elem);
+    });
+
+    createdIds = [];
 
   });
 
@@ -36,6 +52,19 @@ describe('dom-i18n', function() {
     expect(
       getElementById('hello-world').textContent
     ).toEqual('Hello world');
+
+  });
+
+  it('should get second language listed on default example', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'fr-ca'
+    });
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Bonjour monsieur/madame');
 
   });
 
