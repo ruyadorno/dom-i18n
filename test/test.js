@@ -11,6 +11,9 @@ describe('dom-i18n', function() {
 
     var rootElem = window.document.body;
 
+    // makes sure default language is always the same for tests purposes
+    window.navigator.language = 'en-US';
+
     function createTextNode(id, text) {
       var childElem = createElement('span');
       childElem.id = id;
@@ -68,4 +71,18 @@ describe('dom-i18n', function() {
 
   });
 
+  it('should use a simpler lang ref in case language is not found', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr', 'pt'],
+      currentLanguage: 'pt-br'
+    });
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Mundão velho sem porteira');
+
+  });
+
 });
+

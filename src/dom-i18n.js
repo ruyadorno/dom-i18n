@@ -22,8 +22,8 @@
       }
 
       // If language isn't on languages arr, try using a less specific ref
-      if (!languages.indexOf(lang)) {
-        console.warning(
+      if (languages.indexOf(lang) === -1) {
+        console.warn(
           lang + ' is not available on the list of languages provided'
         );
         lang = lang.indexOf('-') ? lang.split('-')[0] : lang;
@@ -31,7 +31,7 @@
 
       // In the case that the lang ref is really not in the
       // languages list, switchs to default language instead
-      if (!languages.indexOf(lang)) {
+      if (languages.indexOf(lang) === -1) {
         console.error(
           lang + ' is not compatible with any language provided'
         );
