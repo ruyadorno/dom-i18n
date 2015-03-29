@@ -84,5 +84,19 @@ describe('dom-i18n', function() {
 
   });
 
+  it('should use default language if provided ref is not found', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr', 'pt'],
+      defaultLanguage: 'fr',
+      currentLanguage: 'es'
+    });
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Bonjour Montréal');
+
+  });
+
 });
 
