@@ -9,8 +9,7 @@
     "grunt": "^0.4.x",
     "grunt-contrib-jasmine": "^0.8.x",
     "grunt-contrib-uglify": "^0.8.x",
-    "grunt-menu": "^1.x.x",
-    "grunt-sg-release": "^0.2.x"
+    "grunt-menu": "^1.x.x"
   },
   "repository": {
     "type": "git",

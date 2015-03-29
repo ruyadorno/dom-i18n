@@ -10,7 +10,9 @@
     return lang.indexOf('-') ? lang.split('-')[0] : lang;
   }
 
-  function parseTranslatableStrings(options) {
+  function domI18n(options) {
+
+    options = options || {};
 
     var rootElement = options.rootElement || window.document;
     var selector = options.selector || '[data-translatable]';
@@ -50,10 +52,9 @@
     }
 
     translateElements(selector);
-
   }
 
-  window.parseTranslatableStrings = parseTranslatableStrings;
+  window.domI18n = domI18n;
 
 })(window);
 
