@@ -32,6 +32,18 @@ describe('dom-i18n', function() {
       );
     })();
 
+    (function createAttributeTest() {
+
+      var childElem = createElement('img');
+      childElem.id = 'attr-test';
+      childElem.dataset.translatable = true;
+      childElem.dataset.translatableAttr = 'title';
+      childElem.title = 'Hello world // Bonjour Montréal // Mundão velho sem porteira';
+      rootElem.appendChild(childElem);
+
+      createdIds.push(childElem.id);
+    })();
+
   });
 
   afterEach(function () {
@@ -96,6 +108,19 @@ describe('dom-i18n', function() {
       getElementById('hello-world').textContent
     ).toEqual('Bonjour Montréal');
 
+  });
+
+  it('should also work for specified attributes', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr', 'pt'],
+      defaultLanguage: 'en',
+      currentLanguage: 'pt'
+    });
+
+    expect(
+      getElementById('attr-test').title
+    ).toEqual('Mundão velho sem porteira');
   });
 
 });
