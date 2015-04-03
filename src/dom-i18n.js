@@ -41,10 +41,6 @@
       return lang;
     })(options.currentLanguage);
 
-    function hasCurrentLanguage() {
-      return languages.indexOf(currentLanguage) > -1;
-    }
-
     function getLanguageIndex() {
       var index = languages.indexOf(currentLanguage);
       return index > -1 ? index : languages.indexOf(defaultLanguage);
