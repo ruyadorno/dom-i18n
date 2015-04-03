@@ -7,6 +7,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-menu');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-coveralls');
 
   grunt.initConfig({
 
@@ -44,6 +45,12 @@ module.exports = function (grunt) {
       }
     },
 
+    coveralls: {
+      options: {
+        src: 'test/coverage/lcov/lcov.info'
+      },
+    },
+
     uglify: {
       options: {
         compress: {
@@ -63,6 +70,10 @@ module.exports = function (grunt) {
     'uglify:dist',
     'jasmine:minified'
   ]);
+
+  grunt.registerTask('test', ['jasmine:dev']);
+
+  grunt.registerTask('ci', ['jasmine:coveralls', 'coveralls']);
 
   grunt.registerTask('default', ['menu']);
 
