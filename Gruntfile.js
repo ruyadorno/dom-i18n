@@ -20,6 +20,23 @@ module.exports = function (grunt) {
       minified: {
         src: 'dist/dom-i18n.min.js',
       },
+      coverage: {
+        src: ['src/dom-i18n.js'],
+        options: {
+          specs: ['test/test.js'],
+          template: require('grunt-template-jasmine-istanbul'),
+          templateOptions: {
+            coverage: 'test/coverage/coverage.json',
+            report: 'test/coverage',
+            thresholds: {
+              lines: 75,
+              statements: 75,
+              branches: 75,
+              functions: 90
+            }
+          }
+        }
+      }
     },
 
     uglify: {
