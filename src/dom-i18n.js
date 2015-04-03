@@ -6,13 +6,17 @@
 
     options = options || {};
 
+    var idCount = 0;
     var rootElement = options.rootElement || window.document;
     var selector = options.selector || '[data-translatable]';
     var separator = options.separator || ' // ';
     var defaultLanguage = options.defaultLanguage || 'en';
     var languages = options.languages || ['en'];
     var translatableAttr = 'data-translatable-attr';
-    var currentLanguage = (function getCurrentLanguage(lang) {
+    var translatableCache = {};
+    var currentLanguage = getLanguage(options.currentLanguage);
+
+    function getLanguage(lang) {
 
       // If no current language was provided, uses default browser language
       if (!lang) {
@@ -39,7 +43,19 @@
       }
 
       return lang;
-    })(options.currentLanguage);
+    }
+
+    function changeLanguage(lang) {
+      currentLanguage = getLanguage(lang);
+      translateElements();
+    }
+
+    function hasCachedVersion(elem) {
+      var id = elem.getAttribute('data-dom-i18n-id');
+      return id &&
+        translatableCache &&
+        translatableCache[id];
+    }
 
     function getLanguageIndex() {
       var index = languages.indexOf(currentLanguage);
@@ -50,13 +66,32 @@
       return value.split(separator)[getLanguageIndex()];
     }
 
+    function cacheOriginalData(elem, content) {
+      var elemId = 'i18n' + (++idCount);
+      elem.setAttribute('data-dom-i18n-id', elemId);
+      translatableCache[elemId] = content;
+    }
+
+    function getCachedData(elem) {
+      return translatableCache &&
+        translatableCache[
+          elem.getAttribute('data-dom-i18n-id')
+        ];
+    }
+
     function translateElement(elem) {
       var attr = elem.getAttribute(translatableAttr);
-      if (attr) {
-        elem[attr] = translateString(elem[attr]);
+      var prop = attr ? attr : 'textContent';
+      var translated;
+
+      if (hasCachedVersion(elem)) {
+        translated = translateString(getCachedData(elem));
       } else {
-        elem.textContent = translateString(elem.textContent);
+        cacheOriginalData(elem, elem[prop]);
+        translated = translateString(elem[prop]);
       }
+
+      elem[prop] = translated;
     }
 
     function translateElements() {
@@ -67,6 +102,10 @@
     }
 
     translateElements(selector);
+
+    return {
+      changeLanguage: changeLanguage
+    };
   }
 
   window.domI18n = domI18n;

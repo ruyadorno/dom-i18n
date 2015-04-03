@@ -128,12 +128,49 @@ describe('dom-i18n', function() {
 
     var i18n = window.domI18n({
       languages: ['en', 'fr-ca', 'pt-br'],
-      currentLanguage: 'fr-ca'
+      currentLanguage: 'en'
     });
 
     expect(
       getElementById('hello-world').textContent
     ).toEqual('Hello world');
+
+    i18n.changeLanguage('fr-ca');
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Bonjour Montréal');
+
+  });
+
+  it('should be able to switch languages back and forth', function() {
+
+    var i18n = window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Hello world');
+
+    i18n.changeLanguage('fr-ca');
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Bonjour Montréal');
+
+    i18n.changeLanguage('en');
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Hello world');
+
+    i18n.changeLanguage('pt-br');
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Mundão velho sem porteira');
 
     i18n.changeLanguage('fr-ca');
 
