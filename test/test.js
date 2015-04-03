@@ -121,6 +121,26 @@ describe('dom-i18n', function() {
     expect(
       getElementById('attr-test').title
     ).toEqual('Mundão velho sem porteira');
+
+  });
+
+  it('should be able to change languages', function() {
+
+    var i18n = window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'fr-ca'
+    });
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Hello world');
+
+    i18n.changeLanguage('fr-ca');
+
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Bonjour Montréal');
+
   });
 
 });
