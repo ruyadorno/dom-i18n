@@ -94,7 +94,9 @@
     }
 
     function translateElements() {
-      var elems = rootElement.querySelectorAll(selector);
+      var elems = (typeof selector == 'string' || selector instanceof String) ?
+        rootElement.querySelectorAll(selector) :
+        selector;
       for (var i = 0; i < elems.length; ++i) {
         translateElement(elems[i]);
       }
