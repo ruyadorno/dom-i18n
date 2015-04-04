@@ -1,4 +1,4 @@
-(function (window) {
+(function () {
 
   'use strict';
 
@@ -6,7 +6,6 @@
 
     options = options || {};
 
-    var idCount = 0;
     var rootElement = options.rootElement || window.document;
     var selector = options.selector || '[data-translatable]';
     var separator = options.separator || ' // ';
@@ -67,7 +66,7 @@
     }
 
     function cacheOriginalData(elem, content) {
-      var elemId = 'i18n' + (++idCount);
+      var elemId = 'i18n' + Date.now() + (Math.random() * 1000);
       elem.setAttribute('data-dom-i18n-id', elemId);
       translatableCache[elemId] = content;
     }
@@ -110,5 +109,5 @@
 
   window.domI18n = domI18n;
 
-})(window);
+})();
 
