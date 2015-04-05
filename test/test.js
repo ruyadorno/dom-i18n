@@ -15,21 +15,19 @@ describe('dom-i18n', function() {
     window.navigator.language = 'en-US';
 
     function createTextNode(id, text) {
-      var childElem = createElement('span');
-      childElem.id = id;
-      childElem.textContent = text;
-      childElem.dataset.translatable = true;
-      createdIds.push(id);
       return childElem;
     }
 
     (function createDefaultTest() {
-      rootElem.appendChild(
-        createTextNode(
-          'hello-world',
-          'Hello world // Bonjour Montréal // Mundão velho sem porteira'
-        )
-      );
+
+      var childElem = createElement('span');
+      childElem.id = 'hello-world';
+      childElem.textContent =
+        'Hello world // Bonjour Montréal // Mundão velho sem porteira';
+      childElem.dataset.translatable = true;
+      rootElem.appendChild(childElem);
+
+      createdIds.push(childElem.id);
     })();
 
     (function createAttributeTest() {
@@ -38,7 +36,8 @@ describe('dom-i18n', function() {
       childElem.id = 'attr-test';
       childElem.dataset.translatable = true;
       childElem.dataset.translatableAttr = 'title';
-      childElem.title = 'Hello world // Bonjour Montréal // Mundão velho sem porteira';
+      childElem.title =
+        'Hello world // Bonjour Montréal // Mundão velho sem porteira';
       rootElem.appendChild(childElem);
 
       createdIds.push(childElem.id);
