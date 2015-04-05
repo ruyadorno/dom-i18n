@@ -33,12 +33,6 @@ module.exports = function (grunt) {
                 options: {
                     dir: 'test/coverage/lcov'
                 }
-            },
-            thresholds: {
-              lines: 75,
-              statements: 75,
-              branches: 75,
-              functions: 90
             }
           }
         }
