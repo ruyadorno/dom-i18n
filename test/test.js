@@ -30,6 +30,18 @@ describe('dom-i18n', function() {
       createdIds.push(childElem.id);
     })();
 
+    (function createSingleLanguageTest() {
+
+      var childElem = createElement('span');
+      childElem.id = 'single-language';
+      childElem.textContent =
+        'Hello world';
+      childElem.dataset.translatable = true;
+      rootElem.appendChild(childElem);
+
+      createdIds.push(childElem.id);
+    })();
+
     (function createAttributeTest() {
 
       var childElem = createElement('img');
@@ -39,6 +51,51 @@ describe('dom-i18n', function() {
       childElem.title =
         'Hello world // Bonjour Montréal // Mundão velho sem porteira';
       rootElem.appendChild(childElem);
+
+      createdIds.push(childElem.id);
+    })();
+
+    (function createChildrenTest() {
+
+      var childElem = createElement('div');
+      childElem.id = 'children-test';
+      childElem.dataset.translatable = true;
+      rootElem.appendChild(childElem);
+
+      [
+        'Hello world',
+        'Bonjour Montréal',
+        'Mundão velho sem porteira'
+      ].forEach(function (item) {
+        var child = createElement('span');
+        child.textContent = item;
+        childElem.appendChild(child);
+      });
+
+      createdIds.push(childElem.id);
+    })();
+
+    (function createChildrenWithLinksTest() {
+
+      var childElem = createElement('div');
+      childElem.id = 'children-links-test';
+      childElem.dataset.translatable = true;
+      rootElem.appendChild(childElem);
+
+      [
+        { text: 'Hello ', link: 'world' },
+        { text: 'Bonjour ', link: 'le monde' },
+        { text: 'Mundão ', link: 'velho sem porteira' }
+      ].forEach(function (item) {
+        var child = createElement('span');
+        child.textContent = item.text;
+        childElem.appendChild(child);
+
+        var link = createElement('a');
+        link.href = '#';
+        link.textContent = item.link;
+        child.appendChild(link);
+      });
 
       createdIds.push(childElem.id);
     })();
@@ -177,6 +234,73 @@ describe('dom-i18n', function() {
       getElementById('hello-world').textContent
     ).toEqual('Bonjour Montréal');
 
+  });
+
+  it('should work with a single language', function() {
+
+    window.domI18n();
+
+    expect(
+      getElementById('single-language').textContent
+    ).toEqual('Hello world');
+
+  });
+
+  it('should work with a single text on many languages context', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('single-language').textContent
+    ).toEqual('Hello world');
+
+  });
+
+  it('should use default language if current is missing', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'pt-br'
+    });
+
+    expect(
+      getElementById('single-language').textContent
+    ).toEqual('Hello world');
+
+  });
+
+  it('should work when using children elements for lang def', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('children-test').textContent
+    ).toEqual('Hello world');
+  });
+
+  it('should be capable of handling nested children', function() {
+
+    window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('children-link-test')
+        .firstElementChild.firstElementChild.textContent
+    ).toEqual('Hello world');
+
+  });
+
+  it('should translate isolated regions when using rootElement', function() {
+    // TODO
+    expect(false).toEqual(true);
   });
 
 });
