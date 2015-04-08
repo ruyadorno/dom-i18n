@@ -100,6 +100,24 @@ describe('dom-i18n', function() {
       createdIds.push(childElem.id);
     })();
 
+    (function createIsolatedRegion() {
+
+      var containerElem = createElement('div');
+      containerElem.id = 'isolated-region';
+      containerElem.dataset.translatable = true;
+      rootElem.appendChild(containerElem);
+
+      var childElem = createElement('span');
+      childElem.id = 'hello-world-part-2';
+      childElem.textContent =
+        'Hello world // Bonjour Montréal // Mundão velho sem porteira';
+      childElem.dataset.translatable = true;
+      containerElem.appendChild(childElem);
+
+      createdIds.push(containerElem.id);
+
+    })();
+
   });
 
   afterEach(function () {
@@ -320,8 +338,23 @@ describe('dom-i18n', function() {
   });
 
   it('should translate isolated regions when using rootElement', function() {
-    // TODO
-    expect(false).toEqual(true);
+
+    window.domI18n({
+      rootElement: getElementById('isolated-region'),
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'fr-ca'
+    });
+
+    // Should not change other elements texts
+    expect(
+      getElementById('hello-world').textContent
+    ).toEqual('Hello world // Bonjour Montréal // Mundão velho sem porteira');
+
+    // expect child element to be translated
+    expect(
+      getElementById('hello-world-part-2').textContent
+    ).toEqual('Bonjour Montréal');
+
   });
 
 });
