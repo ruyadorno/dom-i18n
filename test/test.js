@@ -292,9 +292,30 @@ describe('dom-i18n', function() {
     });
 
     expect(
-      getElementById('children-link-test')
-        .firstElementChild.firstElementChild.textContent
+      getElementById('children-links-test')
+        .firstElementChild.textContent
     ).toEqual('Hello world');
+
+  });
+
+  it('should be capable of change langs on nested children', function() {
+
+    var i18n = window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('children-links-test')
+        .firstElementChild.textContent
+    ).toEqual('Hello world');
+
+    i18n.changeLanguage('fr-ca');
+
+    expect(
+      getElementById('children-links-test')
+        .firstElementChild.textContent
+    ).toEqual('Bonjour le monde');
 
   });
 

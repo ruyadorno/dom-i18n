@@ -56,16 +56,7 @@
         translatableCache[id];
     }
 
-    function getLanguageIndex() {
-      var index = languages.indexOf(currentLanguage);
-      return index > -1 ? index : languages.indexOf(defaultLanguage);
-    }
-
-    function translateString(value) {
-      return value.split(separator)[getLanguageIndex()];
-    }
-
-    function cacheOriginalData(elem, content) {
+    function setCacheData(elem, content) {
       var elemId = 'i18n' + Date.now() + (Math.random() * 1000);
       elem.setAttribute('data-dom-i18n-id', elemId);
       translatableCache[elemId] = content;
@@ -78,21 +69,66 @@
         ];
     }
 
+    function getLanguageValues(elem, prop) {
+
+      var translations = {};
+      var hasChildren = elem.children.length > 1;
+      var strings = !hasChildren && elem[prop].split(separator);
+
+      languages.forEach(function (lang, index) {
+
+        var child;
+
+        if (hasChildren) {
+          child = elem.children[index];
+          if (child && child.cloneNode) {
+            translations[lang] = child.cloneNode(true);
+          }
+        } else {
+          child = strings[index];
+          if (child) {
+            translations[lang] = String(child);
+          }
+        }
+      });
+
+      return translations;
+    }
+
     function translateElement(elem) {
       var attr = elem.getAttribute(translatableAttr);
       var prop = attr ? attr : 'textContent';
+      var langObjs;
       var translated;
 
       if (hasCachedVersion(elem)) {
-        translated = translateString(getCachedData(elem));
+        langObjs = getCachedData(elem);
       } else {
-        cacheOriginalData(elem, elem[prop]);
-        translated = translateString(elem[prop]);
+        langObjs = getLanguageValues(elem, prop);
+        setCacheData(elem, langObjs);
       }
 
-      elem[prop] = translated;
+      translated = langObjs[currentLanguage];
+
+      if (typeof translated === 'string') {
+        elem[prop] = translated;
+      } else if (typeof translated === 'object') {
+        translateChildren(elem, translated);
+      }
     }
 
+    function translateChildren(elem, translation) {
+      cleanElement(elem);
+      elem.appendChild(translation);
+    }
+
+    function cleanElement(elem) {
+      while (elem.lastChild) {
+        elem.removeChild(elem.lastChild);
+      }
+    }
+
+    // triggers the translation of all elements with the root element
     function translateElements() {
       var elems = (typeof selector == 'string' || selector instanceof String) ?
         rootElement.querySelectorAll(selector) :
