@@ -11,9 +11,6 @@ describe('dom-i18n', function() {
 
     var rootElem = window.document.body;
 
-    // makes sure default language is always the same for tests purposes
-    window.navigator.language = 'en-US';
-
     function createTextNode(id, text) {
       return childElem;
     }
