@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Basic multilingual support</title>
+  </head>
+  <body>
+    <div>
+      <button id="en-btn">EN</button>
+      <button id="fr-btn">FR</button>
+    </div>
+    <h1 data-translatable>Hello world // Bonjour le monde</h1>
+    <p data-translatable>The quick brown fox jumps over the lazy dog. // Le rapide renard marron saute par-dessus le chien paresseux.</p>
+    <script src="../src/dom-i18n.js"></script>
+    <script>
+
+      var enButton = document.getElementById('en-btn');
+      var frButton = document.getElementById('fr-btn');
+      var i18n = domI18n({
+        selector: '[data-translatable]',
+        separator: ' // ',
+        languages: ['en', 'fr'],
+        defaultLanguage: 'en'
+      });
+
+      enButton.onclick = function () {
+        i18n.changeLanguage('en');
+      };
+
+      frButton.onclick = function () {
+        i18n.changeLanguage('fr');
+      };
+
+    </script>
+  </body>
+</html>

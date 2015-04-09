@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Basic multilingual support</title>
+  </head>
+  <body style="display:none">
+    <h1 data-translatable>Hello world // Bonjour le monde</h1>
+    <p data-translatable>The quick brown fox jumps over the lazy dog. // Le rapide renard marron saute par-dessus le chien paresseux.</p>
+    <script src="../src/dom-i18n.js"></script>
+    <script>
+
+      var i18n = domI18n({
+        selector: '[data-translatable]',
+        separator: ' // ',
+        languages: ['en', 'fr'],
+        defaultLanguage: 'en',
+        currentLanguage: 'fr'
+      });
+
+      document.body.style.display = 'block';
+
+    </script>
+  </body>
+</html>
