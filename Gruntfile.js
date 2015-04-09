@@ -67,7 +67,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['jasmine:dev', 'jasmine:minified']);
 
-  grunt.registerTask('coverage', ['jasmine:coveralls', 'coveralls']);
+  grunt.registerTask('coverage', ['jasmine:coverage', 'coveralls']);
 
   grunt.registerTask('default', ['menu']);
 
