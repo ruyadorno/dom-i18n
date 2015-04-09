@@ -40,7 +40,7 @@ module.exports = function (grunt) {
     },
 
     coveralls: {
-      options: {
+      push: {
         src: 'test/coverage/lcov/lcov.info'
       },
     },
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['jasmine:dev', 'jasmine:minified']);
 
-  grunt.registerTask('coverage', ['jasmine:coverage', 'coveralls']);
+  grunt.registerTask('coverage', ['jasmine:coverage', 'coveralls:push']);
 
   grunt.registerTask('default', ['menu']);
 
