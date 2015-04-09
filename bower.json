@@ -1,0 +1,40 @@
+{
+  "name": "dom-i18n",
+  "version": "1.0.0-beta.1",
+  "description": "Provides a very basic HTML multilingual support using JavaScript",
+  "homepage": "https://github.com/ruyadorno/dom-i18n",
+  "authors": [
+    {
+      "name": "Ruy Adorno",
+      "url": "http://ruyadorno.com"
+    }
+  ],
+  "main": "src/dom-i18n.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "multilingual",
+    "multilanguage",
+    "language",
+    "translation",
+    "translatable",
+    "multi",
+    "html",
+    "dom"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "examples",
+    "test",
+    "tests",
+    "Gruntfile.js"
+  ]
+}
