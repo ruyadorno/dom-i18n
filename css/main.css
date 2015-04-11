@@ -56,19 +56,61 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+}
 
+h1 {
+  text-align: center;
+  font-weight: 400;
+}
 
+.bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 
+.wrapper {
+  color: #FFF;
+  width: 960px;
+  position: absolute;
+  left: 50%;
+  margin-left: -480px;
+}
 
+main nav > a {
+  color: #FFF;
+  display: block;
+  background: #000;
+  opacity: 0.5;
+  width: 300px;
+  height: 11px;
+  margin: 0px;
+  padding: 14px 0px;;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
 
+main nav > a:hover, main nav > a:focus {
+  opacity: 0.4;
+}
 
+.sidebar {
+  width: 300px;
+  height: 100%;
+  float: left;
+  background: rgba(0, 0, 0, 0.15);
+  padding-bottom: 10px;
+}
 
-
-
-
-
-
-
+.content {
+  width: 600px;
+  margin-left: 60px;
+  float: left;
+}
 
 /* ==========================================================================
    Media Queries

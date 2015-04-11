@@ -13,17 +13,30 @@
     </head>
     <body>
 
-        <head>
-            <h1>dom-18n</h1>
-        </head>
+        <div data-translatable>
+          <div class="bg" style="background:#469ED3"></div>
+          <div class="bg" style="background:#46D35D"></div>
+          <div class="bg" style="background:#D36646"></div>
+        </div>
 
-        <article>
-          <p data-translatable>
-            <span><strong>dom-i18n</strong> is a <strong>lightweight</strong> (less than 1KB minified/gzipped) JavaScript library that offers an alternative for supporting internationalization on HTML static pages that have no better option than to serve many languages at once.</span>
-            <span><strong>dom-i18n</strong> est une simple bibliothèque en JavaScript pour traduire vos pages HTML. Très utile si vous avez une limitation au niveau du serveur que vous empèche de servir differentes pages pour chaque langue.</span>
-            <span><strong>dom-i18n</strong> é uma biblioteca em JavaScript que oferece uma alternativa para o suporte a internacionalização de páginas HTML. Bastante útil quando existem limitações no servidor que impedem a existência de diferentes versões da página para cada língua.</span>
-          </p>
-        </article>
+        <main class="wrapper clearfix">
+            <div class="sidebar">
+                <h1>dom-18n</h1>
+                <nav id="nav">
+                  <a href="#" title="Change current language to English" data-lang-ref="en">English</a>
+                  <a href="#" title="Changer vers la traduction en Français" data-lang-ref="fr">Français</a>
+                  <a href="#" title="Alterar o idioma atual para Português" data-lang-ref="pt-br">Português</a>
+                </nav>
+            </div>
+
+            <article class="content">
+              <p data-translatable>
+                <span><strong>dom-i18n</strong> is a <strong>lightweight</strong> (less than 1KB minified/gzipped) JavaScript library that offers an alternative for supporting internationalization on HTML static pages that have no better option than to serve many languages at once.</span>
+                <span><strong>dom-i18n</strong> est une simple bibliothèque en JavaScript pour traduire vos pages HTML. Très utile si vous avez une limitation au niveau du serveur que vous empèche de servir differentes pages pour chaque langue.</span>
+                <span><strong>dom-i18n</strong> é uma biblioteca em JavaScript que oferece uma alternativa para o suporte a internacionalização de páginas HTML. Bastante útil quando existem limitações no servidor que impedem a existência de diferentes versões da página para cada língua.</span>
+              </p>
+            </article>
+        </main>
 
         <script src="js/dom-i18n.min.js"></script>
         <script>
@@ -32,7 +45,15 @@
                 separator: ' // ',
                 languages: ['en', 'fr', 'pt-br'],
                 defaultLanguage: 'en',
-                currentLanguage: 'pt-br'
+                currentLanguage: 'en'
+            });
+
+            var nav = Array.prototype.slice.call(document.querySelectorAll('#nav > a'));
+
+            nav.forEach(function (item) {
+              item.onclick = function () {
+                i18n.changeLanguage(this.getAttribute('data-lang-ref'));
+              };
             });
         </script>
     </body>
