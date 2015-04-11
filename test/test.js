@@ -7,6 +7,10 @@ describe('dom-i18n', function() {
   var createElement = window.document.createElement.bind(window.document);
   var getElementById = window.document.getElementById.bind(window.document);
 
+  // suppress warn/error msgs on console tests
+  window.console.warn = function() {};
+  window.console.error = function() {};
+
   beforeEach(function () {
 
     var rootElem = window.document.body;
