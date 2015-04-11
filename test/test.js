@@ -97,6 +97,25 @@ describe('dom-i18n', function() {
       createdIds.push(childElem.id);
     })();
 
+    (function createSingleChildTest() {
+
+      var childElem = createElement('div');
+      childElem.id = 'single-children-test';
+      childElem.dataset.translatable = true;
+      rootElem.appendChild(childElem);
+
+      var child = createElement('span');
+      child.textContent = 'Hello ';
+      childElem.appendChild(child);
+
+      var link = createElement('a');
+      link.href = '#';
+      link.textContent = 'world';
+      child.appendChild(link);
+
+      createdIds.push(childElem.id);
+    })();
+
     (function createIsolatedRegion() {
 
       var containerElem = createElement('div');
@@ -351,6 +370,26 @@ describe('dom-i18n', function() {
     expect(
       getElementById('hello-world-part-2').textContent
     ).toEqual('Bonjour Montréal');
+
+  });
+
+  it('single child should be treated as elements', function() {
+
+    var i18n = window.domI18n({
+      languages: ['en', 'fr-ca', 'pt-br'],
+      currentLanguage: 'en'
+    });
+
+    expect(
+      getElementById('single-children-test')
+        .firstElementChild.textContent
+    ).toEqual('Hello world');
+
+    // link text should be world
+    expect(
+      getElementById('single-children-test')
+        .firstElementChild.firstElementChild.textContent
+    ).toEqual('world');
 
   });
 

@@ -72,7 +72,7 @@
     function getLanguageValues(elem, prop) {
 
       var translations = {};
-      var hasChildren = elem.children.length > 1;
+      var hasChildren = elem.firstElementChild;
       var strings = !hasChildren && elem[prop].split(separator);
 
       languages.forEach(function (lang, index) {
