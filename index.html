@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
+        <title>dom-i18n</title>
+        <meta name="description" content="Provides a very basic HTML multilingual support using JavaScript">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/normalize.min.css">
@@ -21,12 +21,18 @@
 
         <main class="wrapper clearfix">
             <div class="sidebar">
-                <h1>dom-18n</h1>
+                <h1>dom-i18n</h1>
                 <nav id="nav">
                   <a href="#" title="Change current language to English" data-lang-ref="en">English</a>
-                  <a href="#" title="Changer vers la traduction en Français" data-lang-ref="fr">Français</a>
+                  <a href="#" title="Remplacer les textes par leur version en Français" data-lang-ref="fr">Français</a>
                   <a href="#" title="Alterar o idioma atual para Português" data-lang-ref="pt-br">Português</a>
                 </nav>
+
+                <footer>
+                  <div>
+                    <span>MIT License</span> © <a href="http://ruyadorno.com">Ruy Adorno</a>
+                  </div>
+                </footer>
             </div>
 
             <article class="content">
@@ -35,8 +41,16 @@
                 <span><strong>dom-i18n</strong> est une simple bibliothèque en JavaScript pour traduire vos pages HTML. Très utile si vous avez une limitation au niveau du serveur que vous empèche de servir differentes pages pour chaque langue.</span>
                 <span><strong>dom-i18n</strong> é uma biblioteca em JavaScript que oferece uma alternativa para o suporte a internacionalização de páginas HTML. Bastante útil quando existem limitações no servidor que impedem a existência de diferentes versões da página para cada língua.</span>
               </p>
+              <p data-translatable>
+                <span>Visit our <a href="https://github.com/ruyadorno/dom-i18n">GitHub repo</a> to learn more about the project and how to use it.</span>
+                <span>Visitez notre <a href="https://github.com/ruyadorno/dom-i18n">repo GitHub</a> pour plus d'informations sur le projet.</span>
+                <span>Visite nosso <a href="https://github.com/ruyadorno/dom-i18n">repositório GitHub</a> para mais informações sobre o projeto.</span>
+              </p>
             </article>
+
         </main>
+
+        <a href="https://github.com/ruyadorno/dom-i18n"><img style="position: absolute; z-index: 10; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
 
         <script src="js/dom-i18n.min.js"></script>
         <script>
@@ -51,8 +65,9 @@
             var nav = Array.prototype.slice.call(document.querySelectorAll('#nav > a'));
 
             nav.forEach(function (item) {
-              item.onclick = function () {
+              item.onclick = function (e) {
                 i18n.changeLanguage(this.getAttribute('data-lang-ref'));
+                e.preventDefault();
               };
             });
         </script>
