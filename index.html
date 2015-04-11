@@ -1,0 +1,39 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+    </head>
+    <body>
+
+        <head>
+            <h1>dom-18n</h1>
+        </head>
+
+        <article>
+          <p data-translatable>
+            <span><strong>dom-i18n</strong> is a <strong>lightweight</strong> (less than 1KB minified/gzipped) JavaScript library that offers an alternative for supporting internationalization on HTML static pages that have no better option than to serve many languages at once.</span>
+            <span><strong>dom-i18n</strong> est une simple bibliothèque en JavaScript pour traduire vos pages HTML. Très utile si vous avez une limitation au niveau du serveur que vous empèche de servir differentes pages pour chaque langue.</span>
+            <span><strong>dom-i18n</strong> é uma biblioteca em JavaScript que oferece uma alternativa para o suporte a internacionalização de páginas HTML. Bastante útil quando existem limitações no servidor que impedem a existência de diferentes versões da página para cada língua.</span>
+          </p>
+        </article>
+
+        <script src="js/dom-i18n.min.js"></script>
+        <script>
+            var i18n = domI18n({
+                selector: '[data-translatable]',
+                separator: ' // ',
+                languages: ['en', 'fr', 'pt-br'],
+                defaultLanguage: 'en',
+                currentLanguage: 'pt-br'
+            });
+        </script>
+    </body>
+</html>
