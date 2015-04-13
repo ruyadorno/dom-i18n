@@ -57,13 +57,19 @@ textarea {
    ========================================================================== */
 
 body {
+  font-family: 'Raleway', sans-serif;
   height: 100%;
   color: #FFF;
+  font-weight: 300;
 }
 
 h1 {
   text-align: center;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+h1 a:hover, h1 a:focus {
+  text-decoration: none;
 }
 
 a {
@@ -91,7 +97,7 @@ a:hover, a:focus {
 
 main {
   height: 100%;
-  font-size: 28px;
+  font-size: 22px;
   text-align: justify;
 }
 
@@ -101,12 +107,13 @@ main nav > a {
   color: #000;
   opacity: 0.15;
   width: 300px;
-  height: 11px;
+  height: 14px;
   margin: 0px;
-  padding: 14px 0px;;
+  padding: 13px 0px;;
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
+  font-weight: 700;
   margin-bottom: 1px;
 }
 
@@ -135,8 +142,16 @@ main nav > a:hover, main nav > a:focus {
   width: 600px;
   margin-left: 50px;
   float: left;
-  margin-top: 120px;
+  margin-top: 50px;
   box-sizing: border-box;
+}
+
+.content p{
+  opacity: 0.8;
+}
+
+.badges {
+  margin-bottom: 34px;
 }
 
 /* ==========================================================================
