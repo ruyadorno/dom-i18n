@@ -4,6 +4,8 @@
 
 > Provides a very basic HTML multilingual support using JavaScript
 
+http://ruyadorno.github.io/dom-i18n
+
 
 ## About
 
