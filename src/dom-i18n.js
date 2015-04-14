@@ -1,8 +1,33 @@
-(function () {
+(function (root, factory) {
 
   'use strict';
 
-  function domI18n(options) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    // Also defines browser global reference.
+    define([], function () {
+      return (root.domI18n = factory());
+    });
+  } else if (typeof exports === 'object') {
+    // Node. Does not work with strict CommonJS, but
+    // only CommonJS-like enviroments that support module.exports,
+    // like Node.
+    module.exports = factory();
+  } else {
+    // Browser globals
+    root.domI18n = factory();
+  }
+
+}(this, function () {
+// UMD Definition above, do not remove this line
+
+// To get to know more about the Universal Module Definition
+// visit: https://github.com/umdjs/umd
+
+
+  'use strict';
+
+  return function domI18n(options) {
 
     options = options || {};
 
@@ -143,9 +168,7 @@
     return {
       changeLanguage: changeLanguage
     };
-  }
+  };
 
-  window.domI18n = domI18n;
-
-})();
+}));
 
