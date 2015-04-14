@@ -11,9 +11,11 @@ http://ruyadorno.github.io/dom-i18n
 
 ## About
 
-This is a **lightweight** (less than 1KB minified/gzipped) JavaScript library that offers an alternative for supporting internationalization on HTML static pages that have no better option than to serve many languages at once.
+This is a **lightweight** (less than 1KB minified/gzipped) JavaScript module that offers an alternative for supporting internationalization on HTML static pages that have no better option than to serve many languages at once.
 
 It's a smart way of providing support to multiple languages without having to rely on many HTML files, it will also not require a page reload to change languages. The original requirement for creating this script was to provide multilingual support to a CMS in which I only had control to its template code (in my case it was a [Shopify](http://www.shopify.com/) store) but the script is very flexible and can be used in any HTML page.
+
+**Features:** UMD definition, IE9+ support, examples provided.
 
 ## Usage
 
