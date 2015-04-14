@@ -25,7 +25,7 @@ describe('dom-i18n', function() {
       childElem.id = 'hello-world';
       childElem.textContent =
         'Hello world // Bonjour Montréal // Mundão velho sem porteira';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(childElem);
 
       createdIds.push(childElem.id);
@@ -37,7 +37,7 @@ describe('dom-i18n', function() {
       childElem.id = 'single-language';
       childElem.textContent =
         'Hello world';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(childElem);
 
       createdIds.push(childElem.id);
@@ -47,8 +47,8 @@ describe('dom-i18n', function() {
 
       var childElem = createElement('img');
       childElem.id = 'attr-test';
-      childElem.dataset.translatable = true;
-      childElem.dataset.translatableAttr = 'title';
+      childElem.setAttribute('data-translatable', 'true');
+      childElem.setAttribute('data-translatable-attr', 'title');
       childElem.title =
         'Hello world // Bonjour Montréal // Mundão velho sem porteira';
       rootElem.appendChild(childElem);
@@ -60,7 +60,7 @@ describe('dom-i18n', function() {
 
       var childElem = createElement('div');
       childElem.id = 'children-test';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(childElem);
 
       [
@@ -80,7 +80,7 @@ describe('dom-i18n', function() {
 
       var childElem = createElement('div');
       childElem.id = 'children-links-test';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(childElem);
 
       [
@@ -105,7 +105,7 @@ describe('dom-i18n', function() {
 
       var childElem = createElement('div');
       childElem.id = 'single-children-test';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(childElem);
 
       var child = createElement('span');
@@ -124,14 +124,14 @@ describe('dom-i18n', function() {
 
       var containerElem = createElement('div');
       containerElem.id = 'isolated-region';
-      containerElem.dataset.translatable = true;
+      containerElem.setAttribute('data-translatable', 'true');
       rootElem.appendChild(containerElem);
 
       var childElem = createElement('span');
       childElem.id = 'hello-world-part-2';
       childElem.textContent =
         'Hello world // Bonjour Montréal // Mundão velho sem porteira';
-      childElem.dataset.translatable = true;
+      childElem.setAttribute('data-translatable', 'true');
       containerElem.appendChild(childElem);
 
       createdIds.push(containerElem.id);
