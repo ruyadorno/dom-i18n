@@ -1,0 +1,12 @@
+name: dom-i18n
+ui: jasmine
+browsers:
+  - name: chrome
+    version: latest
+  - name: ie
+    version: 9..latest
+  - name: firefox
+    version: latest
+scripts:
+  - "src/dom-i18n.js"
+
