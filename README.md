@@ -6,6 +6,8 @@
 
 http://ruyadorno.github.io/dom-i18n
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/ruyadorno-2.svg)](https://saucelabs.com/u/ruyadorno-2)
+
 
 ## About
 
