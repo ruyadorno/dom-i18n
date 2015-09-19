@@ -96,7 +96,7 @@
       return translatableCache &&
         translatableCache[
           elem.getAttribute('data-dom-i18n-id')
-          ];
+        ];
     }
 
     function getLanguageValues(elem, prop) {
