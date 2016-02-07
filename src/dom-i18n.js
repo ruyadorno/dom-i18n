@@ -36,6 +36,7 @@
     var separator = options.separator || ' // ';
     var defaultLanguage = options.defaultLanguage || 'en';
     var languages = options.languages || ['en'];
+    var noCacheAttr = 'data-no-cache';
     var translatableAttr = 'data-translatable-attr';
     var translatableCache = {};
     var currentLanguage = getLanguage(options.currentLanguage);
@@ -72,6 +73,10 @@
     function changeLanguage(lang) {
       currentLanguage = getLanguage(lang);
       translateElements();
+    }
+
+    function clearCachedElements() {
+      translatableCache = {};
     }
 
     function hasCachedVersion(elem) {
@@ -122,15 +127,18 @@
 
     function translateElement(elem) {
       var attr = elem.getAttribute(translatableAttr);
+      var noCache = elem.getAttribute(noCacheAttr) !== null;
       var prop = attr ? attr : 'textContent';
       var langObjs;
       var translated;
 
-      if (hasCachedVersion(elem)) {
+      if (!noCache && hasCachedVersion(elem)) {
         langObjs = getCachedData(elem);
       } else {
         langObjs = getLanguageValues(elem, prop);
-        setCacheData(elem, langObjs);
+        if(!noCache) {
+          setCacheData(elem, langObjs);
+        }
       }
 
       translated = langObjs[currentLanguage];
@@ -166,7 +174,8 @@
     translateElements(selector);
 
     return {
-      changeLanguage: changeLanguage
+      changeLanguage: changeLanguage,
+      clearCachedElements: clearCachedElements
     };
   };
 
