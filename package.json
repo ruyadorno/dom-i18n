@@ -26,6 +26,9 @@
     "html",
     "dom"
   ],
+  "license": "MIT",
+  "bugs": "https://github.com/ruyadorno/dom-i18n/issues",
+  "homepage": "https://github.com/ruyadorno/dom-i18n",
   "repository": {
     "type": "git",
     "url": "https://github.com/ruyadorno/dom-i18n.git"
