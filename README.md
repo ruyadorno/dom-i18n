@@ -77,6 +77,7 @@ Here is the complete list of properties you can set on startup and their default
 - **defaultLanguage**:string - Defines a default language to be used in the application. Should be a string reference to one of the languages defined on the `languages` array. Defaults to `'en'`.
 - **currentLanguage**:string - Defines the language to be used when starting the transation script, defaults to `'en'`.
 - **translatableAttr**:string - Reference to a [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset) attribute name that points to an element text attribute that should be tranlsated, useful when you want to translate attributes such as `title`, `alt` or similar. Defaults to `'data-translatable-attr'`.
+- **enableLog**:boolean - If `true` log messages are enabled (e.g. error if language not found). Defaults to `true`.
 
 ### Example:
 

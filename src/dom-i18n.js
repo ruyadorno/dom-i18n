@@ -36,6 +36,7 @@
     var separator = options.separator || ' // ';
     var defaultLanguage = options.defaultLanguage || 'en';
     var languages = options.languages || ['en'];
+    var enableLog = options.enableLog !== undefined ? options.enableLog : true;
     var noCacheAttr = 'data-no-cache';
     var translatableAttr = 'data-translatable-attr';
     var translatableCache = {};
@@ -52,18 +53,22 @@
 
       // If language isn't on languages arr, try using a less specific ref
       if (languages.indexOf(lang) === -1) {
-        console.warn(
-          lang + ' is not available on the list of languages provided'
-        );
+        if (enableLog) {
+          console.warn(
+            lang + ' is not available on the list of languages provided'
+          );
+        }
         lang = lang.indexOf('-') ? lang.split('-')[0] : lang;
       }
 
       // In the case that the lang ref is really not in the
       // languages list, switchs to default language instead
       if (languages.indexOf(lang) === -1) {
-        console.error(
-          lang + ' is not compatible with any language provided'
-        );
+        if (enableLog) {
+          console.error(
+            lang + ' is not compatible with any language provided'
+          );
+        }
         lang = defaultLanguage;
       }
 
